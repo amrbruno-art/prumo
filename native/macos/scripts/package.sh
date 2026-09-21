@@ -69,6 +69,9 @@ PT
 2. Abra Aplicativos e dê um duplo clique em Prumo. Instalar NÃO abre o app.
    Não aparece no Dock. Olhe à DIREITA da barra de menu (junto do relógio).
    Na primeira vez o extra mostra o texto “Prumo”.
+   Clique no extra. Ajustes e Sobre listam os atalhos.
+   Enquanto puxa: sem tecla = minutos; ⇧ Shift = minutos precisos;
+   ⌥ Option = horas; Esc = cancela.
 3. Se o macOS disser que o desenvolvedor não pôde ser verificado:
    clique com o botão direito em Prumo.app → Abrir → Abrir.
    Ou: Ajustes do Sistema → Privacidade e segurança → Abrir mesmo assim.
@@ -81,6 +84,9 @@ EN
 2. Open Applications and double-click Prumo. Installing does NOT launch it.
    There is no Dock icon. Look at the RIGHT of the menu bar (by the clock).
    The first run shows the word “Prumo” next to the extra.
+   Click the extra. Settings and About list shortcuts.
+   While pulling: no key = minutes; ⇧ Shift = exact minutes;
+   ⌥ Option = hours; Esc = cancel.
 3. If macOS says the developer cannot be verified: right-click → Open → Open.
 4. This is not App Store software. Direct / parallel install.
 5. AS IS. No warranty. See DISCLAIMER.md.

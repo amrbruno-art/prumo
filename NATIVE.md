@@ -44,6 +44,17 @@ No Xcode:
 
 O ícone aparece **à direita da barra de menu**. Não aparece no Dock (`LSUIElement`).
 
+Enquanto puxa o prumo:
+
+| Tecla | Efeito |
+| --- | --- |
+| (nenhuma) | Minutos |
+| `⇧` Shift | Minutos precisos, sem encaixe |
+| `⌥` Option | Horas |
+| `Esc` | Cancela |
+
+Os atalhos também estão em Ajustes / Sobre no extra.
+
 Para gerar um `.app` e pôr em Aplicativos:
 
 1. Product → Scheme → Prumo, configuração **Release** (Product → Scheme → Edit Scheme → Run → Release, ou Archive).
@@ -123,6 +134,17 @@ open native/macos/Prumo.xcodeproj
 ```
 
 In Xcode: pick a **Team**, Product → Run. The icon is on the **right of the menu bar**, not in the Dock.
+
+While pulling:
+
+| Key | Effect |
+| --- | --- |
+| (none) | Minutes |
+| `⇧` Shift | Exact minutes, no snap |
+| `⌥` Option | Hours |
+| `Esc` | Cancel |
+
+Shortcuts are also listed in Settings / About in the extra.
 
 Archive → Distribute App → Copy App → drop `Prumo.app` into `/Applications`.
 

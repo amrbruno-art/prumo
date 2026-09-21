@@ -54,6 +54,19 @@ Duplo clique → continuar → a senha de administrador pode ser pedida → Inst
 
 O ícone aparece na **barra de menu**, não no Dock.
 
+### Como usar (gesto)
+
+Clique em **Prumo** na barra → **Puxar prumo**, ou arraste para baixo.
+
+| Tecla | Efeito |
+| --- | --- |
+| (nenhuma) | Minutos |
+| `⇧` Shift | Minutos precisos, sem encaixe |
+| `⌥` Option | Horas |
+| `Esc` | Cancela |
+
+Isto também está em Ajustes e em Sobre, dentro do extra.
+
 ### 3. Se o Mac recusar (“desenvolvedor não identificado”)
 
 Pacotes **sem notarização** (sem conta Apple Developer paga) são bloqueados pelo Gatekeeper. Isso é esperado.
@@ -127,6 +140,19 @@ From [Actions → macOS installer](https://github.com/amrbruno-art/prumo/actions
 bash native/macos/scripts/package.sh
 open dist/macos
 ```
+
+### How to use (gesture)
+
+Click **Prumo** in the bar → **Pull plumb**, or drag down.
+
+| Key | Effect |
+| --- | --- |
+| (none) | Minutes |
+| `⇧` Shift | Exact minutes, no snap |
+| `⌥` Option | Hours |
+| `Esc` | Cancel |
+
+Also listed in Settings and About inside the extra.
 
 ### Gatekeeper
 

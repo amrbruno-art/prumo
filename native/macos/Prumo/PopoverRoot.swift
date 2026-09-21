@@ -77,6 +77,10 @@ struct PopoverRoot: View {
             .buttonStyle(.borderedProminent)
             .padding(.horizontal, 16)
 
+            shortcuts
+                .padding(.horizontal, 16)
+                .padding(.top, 4)
+
             if running.isEmpty {
                 Text(Copy.empty(lang))
                     .foregroundStyle(.secondary)
@@ -128,8 +132,22 @@ struct PopoverRoot: View {
                     if value { Notifier.request() }
                 }
             ))
+            shortcuts
+                .padding(.top, 8)
         }
         .padding(8)
+    }
+
+    private var shortcuts: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(Copy.shortcutsTitle(lang))
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Text(Copy.shortcutPlain(lang)).font(.caption)
+            Text(Copy.shortcutShift(lang)).font(.caption)
+            Text(Copy.shortcutOption(lang)).font(.caption)
+            Text(Copy.shortcutEsc(lang)).font(.caption)
+        }
     }
 
     private var about: some View {
@@ -144,6 +162,8 @@ struct PopoverRoot: View {
                 Text("AS IS. No warranty. See DISCLAIMER.md in the repository.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+                shortcuts
+                    .padding(.top, 8)
             }
             .padding(16)
         }

@@ -56,6 +56,21 @@ enum Copy {
     }
     static func pull(_ lang: Lang) -> String { lang == .pt ? "Puxar prumo" : "Pull plumb" }
     static func quick(_ lang: Lang) -> String { lang == .pt ? "Rápido" : "Quick" }
+    static func shortcutsTitle(_ lang: Lang) -> String {
+        lang == .pt ? "Enquanto puxa" : "While pulling"
+    }
+    static func shortcutPlain(_ lang: Lang) -> String {
+        lang == .pt ? "Sem tecla — minutos" : "No modifier — minutes"
+    }
+    static func shortcutShift(_ lang: Lang) -> String {
+        lang == .pt ? "⇧ Shift — minutos precisos, sem encaixe" : "⇧ Shift — exact minutes, no snap"
+    }
+    static func shortcutOption(_ lang: Lang) -> String {
+        lang == .pt ? "⌥ Option — horas" : "⌥ Option — hours"
+    }
+    static func shortcutEsc(_ lang: Lang) -> String {
+        lang == .pt ? "Esc — cancela o gesto" : "Esc — cancel the pull"
+    }
     static func firedBody(_ lang: Lang) -> String {
         lang == .pt ? "Tempo esgotado." : "Time is up."
     }
