@@ -38,11 +38,9 @@ final class StatusItemController: NSObject {
         button.image = Self.barImage()
         if store.settings.showCountdown, let next = store.nextRunning {
             let left = max(0, next.endsAt - Int(Date().timeIntervalSince1970 * 1000))
-            button.title = " " + Format.remaining(left, showSeconds: store.settings.showSeconds)
-        } else if !store.settings.seenOnboarding {
-            button.title = " Prumo"
+            button.title = " Prumo " + Format.remaining(left, showSeconds: store.settings.showSeconds)
         } else {
-            button.title = ""
+            button.title = " Prumo"
         }
         item.length = NSStatusItem.variableLength
         item.isVisible = true

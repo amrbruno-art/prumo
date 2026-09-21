@@ -90,4 +90,9 @@ enum Copy {
             ? "Prumo é original: nome, ícone, textos e gesto em metáfora de prumo. Não é o Gestimer."
             : "Prumo is original: name, icon, copy, and a plumb-bob metaphor. It is not Gestimer."
     }
+    static func forceQuitNote(_ lang: Lang) -> String {
+        lang == .pt
+            ? "Não aparece no Dock nem em Forçar Encerrar. Para sair: Sair neste painel. Para ver o processo: Monitor de Atividade → Prumo."
+            : "Not in the Dock or Force Quit. To quit: Quit in this panel. To see the process: Activity Monitor → Prumo."
+    }
 }

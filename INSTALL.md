@@ -98,15 +98,16 @@ Ajustes do Sistema → Geral → Itens de início → **+** → Prumo.
 
 ### 6. Instalei e não aparece na barra
 
-Isto é um app **acessório**: **não vai para o Dock** e **o instalador não o deixa aberto** (no 1.0.3 o `.pkg` tenta abrir).
+Isto é um app **acessório**: **não vai para o Dock**. **Forçar Encerrar também não lista** este tipo de app — isso é normal. Use o Monitor de Atividade.
 
-1. Finder → Aplicativos → dê **duplo clique** em Prumo.
-2. Olhe à **direita** da barra de menu, junto do relógio / Control Center — não na barra de ferramentas de uma janela.
-3. Na primeira execução o extra mostra o texto **Prumo** (à direita, junto do relógio — não no Dock).
-4. Monitor de Atividade → busque `Prumo`. Se não estiver na lista, o app não está rodando (volte ao passo 1; se o Gatekeeper bloquear, botão direito → Abrir).
-5. Mac com entalhe (notch): os extras escondidos ficam num **«**. Segure **⌘ Command** e arraste ícones da barra para revelar espaço.
-6. Ajustes do Sistema → Central de Controle (ou Itens de início e extensões) → permita extras na barra de menu.
-7. Ainda nada: encerre no Monitor de Atividade se existir, apague o app, instale o **1.0.3** ou mais novo.
+1. Instalar **não** abre o app. Finder → Aplicativos → dê **duplo clique** em Prumo.
+2. Olhe à **direita** da barra de menu, junto do relógio. Deve aparecer o texto **Prumo**.
+3. Monitor de Atividade → busque `Prumo`. Se não listar, o app não está rodando (volte ao passo 1; botão direito → Abrir se o Gatekeeper bloquear).
+4. Mac com entalhe: extras escondidos ficam num **«**. Segure **⌘ Command** e arraste ícones da barra.
+5. Ajustes do Sistema → Central de Controle (ou Itens de início e extensões) → permita extras na barra de menu.
+6. Confirme o último arranque: `~/Library/Application Support/Prumo/last-launch.txt`
+
+Para **sair**: clique em Prumo na barra → **Sair**. Não use Forçar Encerrar.
 
 ### Desinstalar
 
@@ -166,14 +167,16 @@ System Settings → General → Login Items → **+** → Prumo.
 
 ### Installed but nothing in the menu bar
 
-This is an **accessory** app: **no Dock icon**, and the installer did not keep it running (1.0.3+ `.pkg` tries to launch it).
+This is an **accessory** app: **no Dock icon**. **Force Quit also hides this kind of app** — that is normal. Use Activity Monitor.
 
-1. Finder → Applications → **double-click** Prumo.
-2. Look at the **right** of the menu bar, by the clock — not a window toolbar.
-3. First run shows the word **Prumo**.
-4. Activity Monitor → search `Prumo`. If it is missing, the app is not running.
-5. Notch Macs hide extras behind **«**. Hold **⌘** and drag extras to make room.
-6. System Settings → Control Center / Login Items & Extensions → allow menu bar extras.
+1. Installing does **not** launch it. Finder → Applications → **double-click** Prumo.
+2. Look at the **right** of the menu bar, by the clock. You should see **Prumo**.
+3. Activity Monitor → search `Prumo`. If it is missing, the app is not running.
+4. Notch Macs hide extras behind **«**. Hold **⌘** and drag extras to make room.
+5. System Settings → Control Center / Login Items & Extensions → allow menu bar extras.
+6. Launch breadcrumb: `~/Library/Application Support/Prumo/last-launch.txt`
+
+To **quit**: click Prumo in the bar → **Quit**. Do not rely on Force Quit.
 
 ### Uninstall
 

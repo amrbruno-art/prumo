@@ -156,6 +156,8 @@ struct PopoverRoot: View {
                 Text("Prumo").font(.title3.weight(.semibold))
                 Text(Copy.originality(lang))
                     .font(.callout)
+                Text(Copy.forceQuitNote(lang))
+                    .font(.callout)
                 Text("MIT © 2026 Prumo contributors")
                     .font(.caption)
                     .foregroundStyle(.secondary)
