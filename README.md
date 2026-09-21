@@ -8,6 +8,8 @@ Open-source menu bar timer. Pull the plumb from the menu bar — the deeper you 
 
 **Licença:** [MIT](LICENSE) · **Isenção:** [DISCLAIMER.md](DISCLAIMER.md) · **Marcas:** [NOTICE.md](NOTICE.md) · **Desinstalar:** [UNINSTALL.md](UNINSTALL.md) · **App nativo:** [NATIVE.md](NATIVE.md) · **Instalador:** [INSTALL.md](INSTALL.md)
 
+**Nativo atual:** [v1.0.8](https://github.com/amrbruno-art/prumo/releases/tag/v1.0.8) (`Prumo-1.0.8.dmg` / `.pkg` / `.zip`)
+
 > Ao usar este software você aceita o [MIT](LICENSE) e o [DISCLAIMER.md](DISCLAIMER.md).  
 > **Não há garantia. Use por sua conta e risco.**
 

@@ -31,7 +31,9 @@ Tudo isso é **distribuição direta** / **instalação paralela**. Não passa p
 3. Em **Artifacts**, baixe `Prumo-macos-installer`.
 4. Descompacte o zip do artifact.
 
-Quando houver uma tag `v1.0.0`, os mesmos arquivos vão para [Releases](https://github.com/amrbruno-art/prumo/releases).
+A versão atual do app nativo é **[v1.0.8](https://github.com/amrbruno-art/prumo/releases/tag/v1.0.8)**.
+
+Quando houver uma tag `v1.0.8` (e seguintes), os mesmos arquivos vão para [Releases](https://github.com/amrbruno-art/prumo/releases).
 
 **B) Compilar o instalador no seu Mac**
 
@@ -42,7 +44,7 @@ bash native/macos/scripts/package.sh
 open dist/macos
 ```
 
-Gera `dist/macos/Prumo-1.0.0.dmg` e `Prumo-1.0.0.pkg`.
+Gera `dist/macos/Prumo-<versão>.dmg` e `Prumo-<versão>.pkg` (hoje `1.0.8`).
 
 ### 2. Instalar
 
