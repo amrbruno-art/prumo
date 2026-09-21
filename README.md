@@ -6,7 +6,7 @@ Timer de barra de menu de **código aberto**. Puxe o prumo na barra — quanto m
 
 Open-source menu bar timer. Pull the plumb from the menu bar — the deeper you drop it, the longer the time.
 
-**Licença:** [MIT](LICENSE) · **Isenção:** [DISCLAIMER.md](DISCLAIMER.md) · **Marcas:** [NOTICE.md](NOTICE.md)
+**Licença:** [MIT](LICENSE) · **Isenção:** [DISCLAIMER.md](DISCLAIMER.md) · **Marcas:** [NOTICE.md](NOTICE.md) · **Desinstalar:** [UNINSTALL.md](UNINSTALL.md)
 
 > Ao usar este software você aceita o [MIT](LICENSE) e o [DISCLAIMER.md](DISCLAIMER.md).  
 > **Não há garantia. Use por sua conta e risco.**
@@ -69,6 +69,16 @@ npm run preview      # servir o build
 ```
 
 Não rode como serviço de alarme em produção crítica. É um utilitário de interface, no navegador.
+
+### Desinstalar
+
+Guia completo: **[UNINSTALL.md](UNINSTALL.md)**. Resumo:
+
+1. No terminal, `Ctrl+C` / `Control+C` para parar `npm run dev`.
+2. Apague a pasta do clone (`rm -rf prumo` ou Lixo no Finder). Não há `.app` em `/Applications`.
+3. No navegador, remova os dados do site (timers ficam em `localStorage`, chave `prumo-v1`) e recuse as notificações se tiver permitido.
+4. Se instalou como PWA/atalho, tire o ícone da Dock ou da tela de início.
+5. Node.js é separado: só desinstale o Node se você o colocou **apenas** para o Prumo.
 
 ### Como usar
 
@@ -155,6 +165,16 @@ npm run preview
 ```
 
 Do not run this as a safety-critical alarm.
+
+### Uninstall
+
+Full guide: **[UNINSTALL.md](UNINSTALL.md)**. Short version:
+
+1. In the terminal, `Ctrl+C` / `Control+C` to stop `npm run dev`.
+2. Delete the clone folder (`rm -rf prumo` or Trash in Finder). There is no `.app` in `/Applications`.
+3. In the browser, remove the site’s data (timers live in `localStorage` key `prumo-v1`) and revoke notifications if you allowed them.
+4. If you installed it as a PWA/shortcut, remove the Dock or Home Screen icon.
+5. Node.js is separate: uninstall Node only if you installed it **solely** for Prumo.
 
 ### How to use
 
