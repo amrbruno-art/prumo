@@ -135,10 +135,12 @@ final class DragController: NSObject {
         let dy = origin.y - point.y
         let raw = Mapping.dragToMinutes(distancePx: max(0, dy), viewportH: screen.frame.height, stretch: stretch)
         let minutes = Mapping.snap(raw, enabled: store.settings.snap, precise: precise)
+        let ms = Mapping.minutesToMs(minutes)
         overlayView?.model = OverlayView.Model(
             start: CGPoint(x: originScreen.midX, y: originScreen.minY),
             bob: CGPoint(x: originScreen.midX, y: point.y),
-            label: Format.duration(Mapping.minutesToMs(minutes), lang: store.settings.language),
+            label: Format.duration(ms, lang: store.settings.language),
+            endLabel: Format.endClock(ms, lang: store.settings.language),
             screen: screen.frame
         )
         overlayView?.needsDisplay = true
@@ -169,6 +171,7 @@ final class DragController: NSObject {
 
         let host = NSHostingController(rootView: NamePrompt(
             durationLabel: Format.duration(durationMs, lang: store.settings.language),
+            endLabel: Format.endClock(durationMs, lang: store.settings.language),
             lang: store.settings.language,
             onCommit: { [weak self] title in
                 self?.store.addTimer(title: title, durationMs: durationMs)
@@ -229,6 +232,7 @@ final class OverlayView: NSView {
         var start: CGPoint
         var bob: CGPoint
         var label: String
+        var endLabel: String
         var screen: NSRect
     }
 
@@ -267,16 +271,26 @@ final class OverlayView: NSView {
             .font: NSFont.systemFont(ofSize: 22, weight: .semibold),
             .foregroundColor: NSColor.white,
         ]
+        let endAttrs: [NSAttributedString.Key: Any] = [
+            .font: NSFont.systemFont(ofSize: 13, weight: .medium),
+            .foregroundColor: NSColor.white.withAlphaComponent(0.72),
+        ]
         let text = NSAttributedString(string: model.label, attributes: attrs)
+        let endText = NSAttributedString(string: model.endLabel, attributes: endAttrs)
         let size = text.size()
+        let endSize = endText.size()
+        let gap: CGFloat = 8
         let hud = NSRect(
             x: bob.x + 22,
-            y: bob.y - size.height / 2 - 8,
-            width: size.width + 24,
-            height: size.height + 16
+            y: bob.y - max(size.height, endSize.height) / 2 - 8,
+            width: size.width + gap + endSize.width + 24,
+            height: max(size.height, endSize.height) + 16
         )
         NSColor.black.withAlphaComponent(0.72).setFill()
         NSBezierPath(roundedRect: hud, xRadius: 10, yRadius: 10).fill()
-        text.draw(at: NSPoint(x: hud.minX + 12, y: hud.minY + 8))
+        let textY = hud.minY + (hud.height - size.height) / 2
+        let endY = hud.minY + (hud.height - endSize.height) / 2
+        text.draw(at: NSPoint(x: hud.minX + 12, y: textY))
+        endText.draw(at: NSPoint(x: hud.minX + 12 + size.width + gap, y: endY))
     }
 }

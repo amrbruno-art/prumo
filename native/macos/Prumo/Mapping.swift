@@ -103,4 +103,20 @@ enum Format {
         if hours > 0 { return "\(hours):\(pad(mins)):\(pad(secs))" }
         return "\(pad(mins)):\(pad(secs))"
     }
+
+    /// Clock time when a timer of `ms` from now would fire, e.g. "10:10".
+    static func endClock(_ ms: Int, lang: Lang) -> String {
+        let date = Date().addingTimeInterval(TimeInterval(ms) / 1000)
+        let cal = Calendar.current
+        let fmt = DateFormatter()
+        fmt.locale = Locale(identifier: lang == .pt ? "pt_BR" : "en_GB")
+        fmt.dateFormat = "HH:mm"
+        let clock = fmt.string(from: date)
+        if cal.isDateInToday(date) { return clock }
+        if cal.isDateInTomorrow(date) {
+            return lang == .pt ? "amanhã \(clock)" : "tomorrow \(clock)"
+        }
+        fmt.dateFormat = lang == .pt ? "dd/MM HH:mm" : "MMM d HH:mm"
+        return fmt.string(from: date)
+    }
 }

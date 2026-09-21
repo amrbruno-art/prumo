@@ -181,6 +181,7 @@ struct PopoverRoot: View {
 
 struct NamePrompt: View {
     let durationLabel: String
+    let endLabel: String
     let lang: Lang
     var onCommit: (String) -> Void
     var onCancel: () -> Void
@@ -188,7 +189,12 @@ struct NamePrompt: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(durationLabel).font(.headline)
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Text(durationLabel).font(.headline)
+                Text(endLabel)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
             Text(Copy.escCancels(lang))
                 .font(.caption)
                 .foregroundStyle(.secondary)
