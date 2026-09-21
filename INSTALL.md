@@ -89,7 +89,7 @@ Isto é um app **acessório**: **não vai para o Dock** e **o instalador não o 
 
 1. Finder → Aplicativos → dê **duplo clique** em Prumo.
 2. Olhe à **direita** da barra de menu, junto do relógio / Control Center — não na barra de ferramentas de uma janela.
-3. Na primeira execução o extra mostra o texto **Prumo**.
+3. Na primeira execução o extra mostra o texto **Prumo** (à direita, junto do relógio — não no Dock).
 4. Monitor de Atividade → busque `Prumo`. Se não estiver na lista, o app não está rodando (volte ao passo 1; se o Gatekeeper bloquear, botão direito → Abrir).
 5. Mac com entalhe (notch): os extras escondidos ficam num **«**. Segure **⌘ Command** e arraste ícones da barra para revelar espaço.
 6. Ajustes do Sistema → Central de Controle (ou Itens de início e extensões) → permita extras na barra de menu.

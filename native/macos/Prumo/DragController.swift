@@ -9,30 +9,38 @@ final class DragController: NSObject {
     private var origin: NSPoint = .zero
     private var dragging = false
     private var activated = false
+    private var ignoreNextUp = false
     private var localMonitor: Any?
     private var globalMonitor: Any?
 
-    init(store: PrumoStore, status: StatusItemController) {
+    init(store: PrumoStore, status: StatusItemController? = nil) {
         self.store = store
         self.status = status
         super.init()
     }
 
-    func begin(event: NSEvent) {
+    func begin(event: NSEvent? = nil) {
         origin = NSEvent.mouseLocation
         dragging = true
-        activated = false
+        activated = true
+        ignoreNextUp = true
         status?.hidePopover()
+        showOverlay()
+        updateOverlay(
+            at: origin,
+            stretch: NSEvent.modifierFlags.contains(.option),
+            precise: NSEvent.modifierFlags.contains(.shift)
+        )
         clearMonitors()
         localMonitor = NSEvent.addLocalMonitorForEvents(
-            matching: [.leftMouseDragged, .leftMouseUp, .flagsChanged, .keyDown]
+            matching: [.mouseMoved, .leftMouseDragged, .leftMouseUp, .leftMouseDown, .flagsChanged, .keyDown]
         ) { [weak self] ev in
             self?.handle(ev)
             if ev.type == .keyDown, ev.keyCode == 53 { return nil }
             return ev
         }
         globalMonitor = NSEvent.addGlobalMonitorForEvents(
-            matching: [.leftMouseDragged, .leftMouseUp, .flagsChanged]
+            matching: [.mouseMoved, .leftMouseDragged, .leftMouseUp, .leftMouseDown, .flagsChanged]
         ) { [weak self] ev in
             self?.handle(ev)
         }
@@ -40,9 +48,16 @@ final class DragController: NSObject {
 
     private func handle(_ event: NSEvent) {
         switch event.type {
-        case .leftMouseDragged, .flagsChanged:
+        case .mouseMoved, .leftMouseDragged, .flagsChanged:
             move(event: event)
         case .leftMouseUp:
+            if ignoreNextUp {
+                ignoreNextUp = false
+                return
+            }
+            _ = end(event: event)
+        case .leftMouseDown:
+            ignoreNextUp = false
             _ = end(event: event)
         case .keyDown where event.keyCode == 53:
             cancel()
@@ -77,7 +92,6 @@ final class DragController: NSObject {
         let dy = origin.y - now.y
         cancelTracking()
         guard wasActivated, dy >= Mapping.activatePx else {
-            if !wasActivated { status?.togglePopover() }
             return wasActivated
         }
         let screen = NSScreen.main ?? NSScreen.screens[0]

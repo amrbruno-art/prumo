@@ -2,10 +2,13 @@ import SwiftUI
 
 struct PopoverRoot: View {
     @ObservedObject var store: PrumoStore
+    var onStartPull: () -> Void
     var onQuit: () -> Void
     @State private var page: Page = .list
 
     enum Page { case list, settings, about }
+
+    private let presets = [1, 3, 5, 10, 15, 25, 45]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -19,8 +22,15 @@ struct PopoverRoot: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            Divider()
+            Button(role: .destructive, action: onQuit) {
+                Text(Copy.quit(lang))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
         }
-        .frame(width: 280, height: 420)
+        .frame(width: 280, height: 440)
         .background(Color(nsColor: .windowBackgroundColor))
     }
 
@@ -41,7 +51,32 @@ struct PopoverRoot: View {
 
     private var list: some View {
         let running = store.timers.filter { $0.status == .running }
-        return VStack(alignment: .leading, spacing: 8) {
+        return VStack(alignment: .leading, spacing: 10) {
+            Text(Copy.quick(lang).uppercased())
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 16)
+                .padding(.top, 10)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 44), spacing: 6)], spacing: 6) {
+                ForEach(presets, id: \.self) { minutes in
+                    Button("\(minutes)m") {
+                        store.addTimer(title: "", durationMs: minutes * 60_000)
+                    }
+                    .buttonStyle(.bordered)
+                    .controlSize(.small)
+                }
+            }
+            .padding(.horizontal, 16)
+
+            Button(action: onStartPull) {
+                HStack {
+                    Image(nsImage: PlumbIcon.image(size: 14))
+                    Text(Copy.pull(lang))
+                }
+            }
+            .buttonStyle(.borderedProminent)
+            .padding(.horizontal, 16)
+
             if running.isEmpty {
                 Text(Copy.empty(lang))
                     .foregroundStyle(.secondary)
@@ -51,7 +86,7 @@ struct PopoverRoot: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 16)
-                    .padding(.top, 8)
+                    .padding(.top, 4)
                 ForEach(running) { timer in
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
@@ -72,9 +107,7 @@ struct PopoverRoot: View {
                     .padding(.vertical, 6)
                 }
             }
-            Spacer()
-            Button(Copy.quit(lang), action: onQuit)
-                .padding(16)
+            Spacer(minLength: 0)
         }
     }
 

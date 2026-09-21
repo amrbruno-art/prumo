@@ -48,12 +48,14 @@ enum Copy {
     static func later(_ lang: Lang) -> String { lang == .pt ? "Depois" : "Later" }
     static func settings(_ lang: Lang) -> String { lang == .pt ? "Ajustes" : "Settings" }
     static func about(_ lang: Lang) -> String { lang == .pt ? "Sobre" : "About" }
-    static func quit(_ lang: Lang) -> String { lang == .pt ? "Encerrar Prumo" : "Quit Prumo" }
+    static func quit(_ lang: Lang) -> String { lang == .pt ? "Sair" : "Quit" }
     static func cancel(_ lang: Lang) -> String { lang == .pt ? "Cancelar" : "Cancel" }
     static func done(_ lang: Lang) -> String { lang == .pt ? "Pronto" : "Done" }
     static func empty(_ lang: Lang) -> String {
-        lang == .pt ? "Puxe o prumo para criar um timer." : "Pull the plumb to set a timer."
+        lang == .pt ? "Clique num tempo ou puxe o prumo." : "Pick a time or pull the plumb."
     }
+    static func pull(_ lang: Lang) -> String { lang == .pt ? "Puxar prumo" : "Pull plumb" }
+    static func quick(_ lang: Lang) -> String { lang == .pt ? "Rápido" : "Quick" }
     static func firedBody(_ lang: Lang) -> String {
         lang == .pt ? "Tempo esgotado." : "Time is up."
     }
