@@ -52,9 +52,16 @@ enum Copy {
     static func cancel(_ lang: Lang) -> String { lang == .pt ? "Cancelar" : "Cancel" }
     static func done(_ lang: Lang) -> String { lang == .pt ? "Pronto" : "Done" }
     static func empty(_ lang: Lang) -> String {
-        lang == .pt ? "Clique num tempo ou puxe o prumo." : "Pick a time or pull the plumb."
+        lang == .pt
+            ? "Clique e segure o Prumo na barra, depois puxe para baixo."
+            : "Click and hold Prumo in the bar, then pull down."
     }
-    static func pull(_ lang: Lang) -> String { lang == .pt ? "Puxar prumo" : "Pull plumb" }
+    static func pull(_ lang: Lang) -> String {
+        lang == .pt ? "Clique e segure na barra" : "Click and hold in the bar"
+    }
+    static func escCancels(_ lang: Lang) -> String {
+        lang == .pt ? "Esc cancela e não cria o timer." : "Esc cancels and does not start the timer."
+    }
     static func quick(_ lang: Lang) -> String { lang == .pt ? "Rápido" : "Quick" }
     static func shortcutsTitle(_ lang: Lang) -> String {
         lang == .pt ? "Enquanto puxa" : "While pulling"
@@ -69,7 +76,7 @@ enum Copy {
         lang == .pt ? "⌥ Option — horas" : "⌥ Option — hours"
     }
     static func shortcutEsc(_ lang: Lang) -> String {
-        lang == .pt ? "Esc — cancela o gesto" : "Esc — cancel the pull"
+        lang == .pt ? "Esc — cancela o puxão ou o nome (não cria o timer)" : "Esc — cancel the pull or the name (no timer)"
     }
     static func firedBody(_ lang: Lang) -> String {
         lang == .pt ? "Tempo esgotado." : "Time is up."

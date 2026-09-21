@@ -2,7 +2,7 @@ import Foundation
 
 enum Mapping {
     static let dragThresholdPx: CGFloat = 12
-    static let activatePx: CGFloat = 8
+    static let activatePx: CGFloat = 24
 
     private static let shortStops: [(CGFloat, Double)] = [
         (0, 0.5), (0.06, 1), (0.11, 2), (0.16, 3), (0.22, 5), (0.3, 8),

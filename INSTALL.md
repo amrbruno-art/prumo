@@ -56,7 +56,7 @@ O ícone aparece na **barra de menu**, não no Dock.
 
 ### Como usar (gesto)
 
-Clique em **Prumo** na barra → **Puxar prumo**, ou arraste para baixo.
+Clique **e segure** **Prumo** na barra e puxe para baixo. Só clicar abre o painel.
 
 | Tecla | Efeito |
 | --- | --- |
@@ -144,7 +144,7 @@ open dist/macos
 
 ### How to use (gesture)
 
-Click **Prumo** in the bar → **Pull plumb**, or drag down.
+Click **and hold** **Prumo** in the bar, then pull down. A plain click opens the panel.
 
 | Key | Effect |
 | --- | --- |

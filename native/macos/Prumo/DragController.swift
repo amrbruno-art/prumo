@@ -9,9 +9,10 @@ final class DragController: NSObject {
     private var origin: NSPoint = .zero
     private var dragging = false
     private var activated = false
-    private var ignoreNextUp = false
     private var localMonitor: Any?
     private var globalMonitor: Any?
+    private var promptMonitor: Any?
+    private var promptGlobal: Any?
 
     init(store: PrumoStore, status: StatusItemController? = nil) {
         self.store = store
@@ -22,25 +23,19 @@ final class DragController: NSObject {
     func begin(event: NSEvent? = nil) {
         origin = NSEvent.mouseLocation
         dragging = true
-        activated = true
-        ignoreNextUp = true
+        activated = false
         status?.hidePopover()
-        showOverlay()
-        updateOverlay(
-            at: origin,
-            stretch: NSEvent.modifierFlags.contains(.option),
-            precise: NSEvent.modifierFlags.contains(.shift)
-        )
+        NSApp.activate(ignoringOtherApps: true)
         clearMonitors()
         localMonitor = NSEvent.addLocalMonitorForEvents(
-            matching: [.mouseMoved, .leftMouseDragged, .leftMouseUp, .leftMouseDown, .flagsChanged, .keyDown]
+            matching: [.leftMouseDragged, .leftMouseUp, .flagsChanged, .keyDown]
         ) { [weak self] ev in
             self?.handle(ev)
             if ev.type == .keyDown, ev.keyCode == 53 { return nil }
             return ev
         }
         globalMonitor = NSEvent.addGlobalMonitorForEvents(
-            matching: [.mouseMoved, .leftMouseDragged, .leftMouseUp, .leftMouseDown, .flagsChanged]
+            matching: [.leftMouseDragged, .leftMouseUp, .flagsChanged, .keyDown]
         ) { [weak self] ev in
             self?.handle(ev)
         }
@@ -48,16 +43,9 @@ final class DragController: NSObject {
 
     private func handle(_ event: NSEvent) {
         switch event.type {
-        case .mouseMoved, .leftMouseDragged, .flagsChanged:
+        case .leftMouseDragged, .flagsChanged:
             move(event: event)
         case .leftMouseUp:
-            if ignoreNextUp {
-                ignoreNextUp = false
-                return
-            }
-            _ = end(event: event)
-        case .leftMouseDown:
-            ignoreNextUp = false
             _ = end(event: event)
         case .keyDown where event.keyCode == 53:
             cancel()
@@ -92,7 +80,10 @@ final class DragController: NSObject {
         let dy = origin.y - now.y
         cancelTracking()
         guard wasActivated, dy >= Mapping.activatePx else {
-            return wasActivated
+            if !wasActivated {
+                status?.togglePopover()
+            }
+            return false
         }
         let screen = NSScreen.main ?? NSScreen.screens[0]
         let stretch = event.modifierFlags.contains(.option)
@@ -154,8 +145,8 @@ final class DragController: NSObject {
     }
 
     private func promptName(durationMs: Int, at point: NSPoint) {
-        let panel = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 260, height: 108),
+        let panel = NamePanel(
+            contentRect: NSRect(x: 0, y: 0, width: 280, height: 132),
             styleMask: [.titled, .fullSizeContentView],
             backing: .buffered,
             defer: false
@@ -166,23 +157,51 @@ final class DragController: NSObject {
         panel.level = .floating
         panel.hidesOnDeactivate = false
         panel.isReleasedWhenClosed = false
+        panel.becomesKeyOnlyIfNeeded = false
+
+        let close: () -> Void = { [weak self, weak panel] in
+            if let mon = self?.promptMonitor { NSEvent.removeMonitor(mon) }
+            if let mon = self?.promptGlobal { NSEvent.removeMonitor(mon) }
+            self?.promptMonitor = nil
+            self?.promptGlobal = nil
+            panel?.close()
+        }
+
         let host = NSHostingController(rootView: NamePrompt(
             durationLabel: Format.duration(durationMs, lang: store.settings.language),
             lang: store.settings.language,
-            onCommit: { [weak self, weak panel] title in
+            onCommit: { [weak self] title in
                 self?.store.addTimer(title: title, durationMs: durationMs)
-                panel?.close()
+                close()
             },
-            onCancel: { [weak panel] in panel?.close() }
+            onCancel: { close() }
         ))
         panel.contentViewController = host
         var originPt = point
-        originPt.x -= 130
-        originPt.y -= 140
+        originPt.x -= 140
+        originPt.y -= 160
         panel.setFrameOrigin(originPt)
         panel.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
+
+        promptMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { ev in
+            if ev.keyCode == 53 {
+                DispatchQueue.main.async { close() }
+                return nil
+            }
+            return ev
+        }
+        promptGlobal = NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { ev in
+            if ev.keyCode == 53 {
+                DispatchQueue.main.async { close() }
+            }
+        }
     }
+}
+
+final class NamePanel: NSPanel {
+    override var canBecomeKey: Bool { true }
+    override var canBecomeMain: Bool { true }
 }
 
 final class OverlayWindow: NSPanel {

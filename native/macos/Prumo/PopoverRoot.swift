@@ -189,17 +189,23 @@ struct NamePrompt: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(durationLabel).font(.headline)
+            Text(Copy.escCancels(lang))
+                .font(.caption)
+                .foregroundStyle(.secondary)
             TextField(Copy.namePlaceholder(lang), text: $title)
                 .textFieldStyle(.roundedBorder)
                 .onSubmit { onCommit(title) }
             HStack {
-                Button(Copy.skipName(lang)) { onCommit("") }
+                Button(Copy.cancel(lang), role: .cancel, action: onCancel)
+                    .keyboardShortcut(.cancelAction)
                 Spacer()
+                Button(Copy.skipName(lang)) { onCommit("") }
                 Button(Copy.confirmName(lang)) { onCommit(title) }
                     .keyboardShortcut(.defaultAction)
             }
         }
         .padding(14)
-        .frame(width: 248)
+        .frame(width: 268)
+        .onExitCommand(perform: onCancel)
     }
 }
