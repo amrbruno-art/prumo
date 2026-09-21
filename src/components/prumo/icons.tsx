@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-/** Geometric plumb bob — original mark, not a clock. */
+/** Geometric mason plumb — cone, nut, eyelet. Not a drop. */
 export function PlumbBob({
   className,
   filled = true,
@@ -15,19 +15,34 @@ export function PlumbBob({
       aria-hidden="true"
     >
       <path
-        d="M12 3.2c-3.05 0-5.5 2.28-5.5 5.35 0 1.42.5 2.72 1.35 3.74L12 28.4l4.15-16.11c.85-1.02 1.35-2.32 1.35-3.74 0-3.07-2.45-5.35-5.5-5.35z"
-        fill={filled ? "currentColor" : "none"}
+        d="M12 1.6v7.1"
+        fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
       <circle
         cx="12"
-        cy="8.4"
-        r="2.35"
-        fill={filled ? "var(--color-bob-core)" : "none"}
+        cy="10.2"
+        r="1.7"
+        fill="none"
         stroke="currentColor"
-        strokeWidth="1.2"
+        strokeWidth="1.4"
+      />
+      <rect
+        x="9.1"
+        y="11.7"
+        width="5.8"
+        height="2.15"
+        rx="0.35"
+        fill="currentColor"
+      />
+      <path
+        d="M6.8 14h10.4L12 30.5z"
+        fill={filled ? "currentColor" : "none"}
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
       />
     </svg>
   );
