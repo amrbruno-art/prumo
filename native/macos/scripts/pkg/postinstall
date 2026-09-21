@@ -1,0 +1,12 @@
+#!/bin/bash
+# Launch Prumo as the logged-in user after the .pkg finishes.
+# Installing does not otherwise open a LSUIElement app (no Dock icon).
+set -euo pipefail
+APP="/Applications/Prumo.app"
+[[ -d "$APP" ]] || exit 0
+CONSOLE_USER="$(stat -f '%Su' /dev/console 2>/dev/null || true)"
+[[ -n "$CONSOLE_USER" && "$CONSOLE_USER" != "root" && "$CONSOLE_USER" != "loginwindow" ]] || exit 0
+CONSOLE_UID="$(id -u "$CONSOLE_USER" 2>/dev/null || true)"
+[[ -n "$CONSOLE_UID" ]] || exit 0
+/bin/launchctl asuser "$CONSOLE_UID" /usr/bin/open -a "$APP" || true
+exit 0

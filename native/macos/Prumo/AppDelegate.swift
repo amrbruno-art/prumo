@@ -1,7 +1,7 @@
 import AppKit
+import os
 import UserNotifications
 
-@main
 final class AppDelegate: NSObject, NSApplicationDelegate {
     static private(set) var shared: AppDelegate!
 
@@ -9,10 +9,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let notifier = Notifier()
     private var status: StatusItemController!
     private var drag: DragController!
+    private let log = Logger(subsystem: "art.amrbruno.prumo", category: "launch")
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         Self.shared = self
+        ProcessInfo.processInfo.disableAutomaticTermination("Prumo menu extra")
+        ProcessInfo.processInfo.disableSuddenTermination()
         NSApp.setActivationPolicy(.accessory)
+
+        // Status item first so the extra exists even if later setup fails.
+        status = StatusItemController(store: store)
+        drag = DragController(store: store, status: status)
+        status.drag = drag
 
         UNUserNotificationCenter.current().delegate = notifier
         store.load()
@@ -24,11 +32,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         store.startTicking()
-
-        status = StatusItemController(store: store)
-        drag = DragController(store: store, status: status)
-        status.drag = drag
         status.rebuild()
+        log.info("Prumo menu extra is in the menu bar (no Dock icon).")
+    }
+
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        false
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -36,6 +45,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        false
+        status?.rebuild()
+        return false
     }
 }

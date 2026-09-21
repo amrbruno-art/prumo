@@ -47,6 +47,8 @@ xcodebuild \
   -configuration Release \
   -derivedDataPath "$DERIVED" \
   -destination "generic/platform=macOS" \
+  ARCHS="arm64 x86_64" \
+  ONLY_ACTIVE_ARCH=NO \
   "${SIGN_ARGS[@]}"
 
 BUILT_APP="$DERIVED/Build/Products/Release/$APP_NAME"
@@ -64,7 +66,9 @@ Prumo $VERSION — sideload (not the Mac App Store)
 
 PT
 1. Arraste Prumo.app para a pasta Aplicativos (atalho nesta imagem de disco).
-2. Abra Aplicativos → Prumo. O ícone vai para a barra de menu, não para o Dock.
+2. Abra Aplicativos e dê um duplo clique em Prumo. Instalar NÃO abre o app.
+   Não aparece no Dock. Olhe à DIREITA da barra de menu (junto do relógio).
+   Na primeira vez o extra mostra o texto “Prumo”.
 3. Se o macOS disser que o desenvolvedor não pôde ser verificado:
    clique com o botão direito em Prumo.app → Abrir → Abrir.
    Ou: Ajustes do Sistema → Privacidade e segurança → Abrir mesmo assim.
@@ -74,7 +78,9 @@ PT
 
 EN
 1. Drag Prumo.app onto Applications.
-2. Open Applications → Prumo. The icon sits in the menu bar, not the Dock.
+2. Open Applications and double-click Prumo. Installing does NOT launch it.
+   There is no Dock icon. Look at the RIGHT of the menu bar (by the clock).
+   The first run shows the word “Prumo” next to the extra.
 3. If macOS says the developer cannot be verified: right-click → Open → Open.
 4. This is not App Store software. Direct / parallel install.
 5. AS IS. No warranty. See DISCLAIMER.md.
@@ -129,6 +135,7 @@ pkgbuild \
   --identifier "$IDENTIFIER" \
   --version "$VERSION" \
   --component-plist "$COMPONENT_PLIST" \
+  --scripts "$SCRIPT_DIR/pkg" \
   "$PKG_UNSIGNED"
 
 if [[ -n "${INSTALLER_SIGN_IDENTITY:-}" ]]; then

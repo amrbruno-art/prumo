@@ -83,6 +83,18 @@ Não precisa da App Store para isso. É o mesmo modelo de apps como o Homebrew C
 
 Ajustes do Sistema → Geral → Itens de início → **+** → Prumo.
 
+### 6. Instalei e não aparece na barra
+
+Isto é um app **acessório**: **não vai para o Dock** e **o instalador não o deixa aberto** (no 1.0.3 o `.pkg` tenta abrir).
+
+1. Finder → Aplicativos → dê **duplo clique** em Prumo.
+2. Olhe à **direita** da barra de menu, junto do relógio / Control Center — não na barra de ferramentas de uma janela.
+3. Na primeira execução o extra mostra o texto **Prumo**.
+4. Monitor de Atividade → busque `Prumo`. Se não estiver na lista, o app não está rodando (volte ao passo 1; se o Gatekeeper bloquear, botão direito → Abrir).
+5. Mac com entalhe (notch): os extras escondidos ficam num **«**. Segure **⌘ Command** e arraste ícones da barra para revelar espaço.
+6. Ajustes do Sistema → Central de Controle (ou Itens de início e extensões) → permita extras na barra de menu.
+7. Ainda nada: encerre no Monitor de Atividade se existir, apague o app, instale o **1.0.3** ou mais novo.
+
 ### Desinstalar
 
 [UNINSTALL.md](UNINSTALL.md) (app nativo). Se usou o `.pkg`:
@@ -121,6 +133,21 @@ open dist/macos
 Unsigned / unnotarized builds need **right-click → Open**. Do not turn off SIP.
 
 Notarized Developer ID builds (paid Apple Developer program, repo secrets) open without that prompt. Still not App Store.
+
+### Login item
+
+System Settings → General → Login Items → **+** → Prumo.
+
+### Installed but nothing in the menu bar
+
+This is an **accessory** app: **no Dock icon**, and the installer did not keep it running (1.0.3+ `.pkg` tries to launch it).
+
+1. Finder → Applications → **double-click** Prumo.
+2. Look at the **right** of the menu bar, by the clock — not a window toolbar.
+3. First run shows the word **Prumo**.
+4. Activity Monitor → search `Prumo`. If it is missing, the app is not running.
+5. Notch Macs hide extras behind **«**. Hold **⌘** and drag extras to make room.
+6. System Settings → Control Center / Login Items & Extensions → allow menu bar extras.
 
 ### Uninstall
 
