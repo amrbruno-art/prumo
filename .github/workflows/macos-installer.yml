@@ -9,8 +9,8 @@ on:
     paths:
       - "native/macos/**"
       - ".github/workflows/macos-installer.yml"
-  tags:
-    - "v*"
+  release:
+    types: [published]
 
 permissions:
   contents: write
@@ -18,7 +18,7 @@ permissions:
 jobs:
   package:
     name: Build Prumo.dmg / Prumo.pkg
-    runs-on: macos-14
+    runs-on: macos-latest
     timeout-minutes: 30
     steps:
       - name: Checkout
@@ -48,12 +48,11 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
-      - name: Attach to GitHub Release (tags only)
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Attach to GitHub Release
+        if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
           files: dist/macos/*
-          generate_release_notes: true
           body: |
             Instalação paralela (fora da Mac App Store). Sideload, not App Store.
 
