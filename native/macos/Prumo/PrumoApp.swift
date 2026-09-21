@@ -5,9 +5,8 @@ struct PrumoApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
-        // Keeps the SwiftUI lifecycle without a document window.
-        // The extra itself is an NSStatusItem (see AppDelegate).
-        Settings {
+        // Fully qualified: Models.Settings would otherwise shadow SwiftUI.Settings.
+        SwiftUI.Settings {
             EmptyView()
         }
     }
