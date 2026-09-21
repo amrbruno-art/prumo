@@ -65,16 +65,22 @@ Copie `Prumo.app` para `/Applications` se quiser.
 
 Ajustes do Sistema → Geral → Itens de início → **+** → Prumo.
 
-### Distribuir para outras pessoas
+### Distribuir para outras pessoas (fora da App Store)
 
-Sem notarização, o Gatekeeper bloqueia o `.app` em outros Macs.
+Instalação **paralela** / distribuição direta: **[INSTALL.md](INSTALL.md)**.
 
-1. Conta Apple Developer paga.
-2. Archive no Xcode.
-3. Distribute App → Direct Distribution / Developer ID, com notarização.
-4. Publique o `.dmg` ou zip nos [Releases](https://github.com/amrbruno-art/prumo/releases) do GitHub.
+No Mac:
 
-Mac App Store é outro fluxo (sandbox já está ligado; privacidade, screenshots, revisão da Apple).
+```bash
+bash native/macos/scripts/package.sh
+open dist/macos
+```
+
+Isso gera `Prumo-1.0.0.dmg` (arrastar para Aplicativos) e `Prumo-1.0.0.pkg` (instalador). O GitHub Actions também gera esses arquivos em cada push em `native/macos/` — baixe o artifact **Prumo-macos-installer**.
+
+Sem notarização (conta Apple Developer paga), o Gatekeeper pede **clique com o botão direito → Abrir**. Não precisa da App Store.
+
+Mac App Store é outro fluxo (revisão da Apple, screenshots, privacidade). Este projeto não envia nada para a loja.
 
 ### O que **não** fazer
 
@@ -124,9 +130,18 @@ Archive → Distribute App → Copy App → drop `Prumo.app` into `/Applications
 
 System Settings → General → Login Items → **+** → Prumo.
 
-### Giving it to other people
+### Giving it to other people (not App Store)
 
-Without notarization, Gatekeeper blocks the app on other Macs. Paid Developer ID + notarize, then attach a `.dmg` to GitHub Releases.
+Sideload / direct distribution: **[INSTALL.md](INSTALL.md)**.
+
+```bash
+bash native/macos/scripts/package.sh
+open dist/macos
+```
+
+That builds `Prumo-1.0.0.dmg` and `Prumo-1.0.0.pkg`. GitHub Actions uploads the same files as artifact **Prumo-macos-installer**.
+
+Without notarization, Gatekeeper wants **right-click → Open**. You do not need the App Store.
 
 ### What not to do
 

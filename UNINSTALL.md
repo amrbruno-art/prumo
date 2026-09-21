@@ -24,7 +24,11 @@ Só vale se você gerou o app no Xcode ([NATIVE.md](NATIVE.md)).
    ```
 4. **Início automático.** Ajustes do Sistema → Geral → Itens de início → remova Prumo se estiver lá.
 5. **Notificações.** Ajustes do Sistema → Notificações → Prumo → desligar ou remover.
-6. **Xcode / clone.** Se não quiser mais o código: apague a pasta do repositório. O Xcode em si não é o Prumo; não desinstale o Xcode só por isso.
+6. **Recibo do .pkg** (só se instalou pelo pacote):
+   ```bash
+   sudo pkgutil --forget art.amrbruno.prumo
+   ```
+7. **Xcode / clone.** Se não quiser mais o código: apague a pasta do repositório. O Xcode em si não é o Prumo; não desinstale o Xcode só por isso.
 
 Isto **não** remove o Node, o Git nem outros programas.
 
@@ -46,7 +50,11 @@ Only if you built the app in Xcode ([NATIVE.md](NATIVE.md)).
    ```
 4. **Login item.** System Settings → General → Login Items → remove Prumo if listed.
 5. **Notifications.** System Settings → Notifications → Prumo → turn off or remove.
-6. **Xcode / clone.** Delete the repo folder if you no longer want the source. Do not uninstall Xcode just for this.
+6. **`.pkg` receipt** (only if you used the installer package):
+   ```bash
+   sudo pkgutil --forget art.amrbruno.prumo
+   ```
+7. **Xcode / clone.** Delete the repo folder if you no longer want the source. Do not uninstall Xcode just for this.
 
 This does **not** remove Node, Git, or other programs.
 

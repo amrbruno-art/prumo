@@ -6,7 +6,7 @@ Timer de barra de menu de **código aberto**. Puxe o prumo na barra — quanto m
 
 Open-source menu bar timer. Pull the plumb from the menu bar — the deeper you drop it, the longer the time.
 
-**Licença:** [MIT](LICENSE) · **Isenção:** [DISCLAIMER.md](DISCLAIMER.md) · **Marcas:** [NOTICE.md](NOTICE.md) · **Desinstalar:** [UNINSTALL.md](UNINSTALL.md) · **App nativo:** [NATIVE.md](NATIVE.md)
+**Licença:** [MIT](LICENSE) · **Isenção:** [DISCLAIMER.md](DISCLAIMER.md) · **Marcas:** [NOTICE.md](NOTICE.md) · **Desinstalar:** [UNINSTALL.md](UNINSTALL.md) · **App nativo:** [NATIVE.md](NATIVE.md) · **Instalador:** [INSTALL.md](INSTALL.md)
 
 > Ao usar este software você aceita o [MIT](LICENSE) e o [DISCLAIMER.md](DISCLAIMER.md).  
 > **Não há garantia. Use por sua conta e risco.**
@@ -85,9 +85,13 @@ open native/macos/Prumo.xcodeproj
 
 No Xcode: escolha o seu Team (Apple ID) → Product → Run. O prumo aparece na **barra de menu** (não no Dock).
 
-Para instalar em `/Applications`: Product → Archive → Distribute App → Copy App.
+Para instalar em `/Applications` **sem App Store** (`.dmg` / `.pkg`): **[INSTALL.md](INSTALL.md)**.
 
-Distribuir para outros Macs exige conta Apple Developer paga e notarização. Sem isso, o Gatekeeper bloqueia.
+```bash
+bash native/macos/scripts/package.sh
+```
+
+Ou baixe o artifact do [workflow macOS installer](https://github.com/amrbruno-art/prumo/actions/workflows/macos-installer.yml). Sem notarização, use clique direito → Abrir.
 
 ### Desinstalar
 
@@ -198,9 +202,13 @@ open native/macos/Prumo.xcodeproj
 
 In Xcode: pick your Team (Apple ID) → Product → Run. The plumb appears in the **menu bar** (not the Dock).
 
-To install in `/Applications`: Product → Archive → Distribute App → Copy App.
+To install in `/Applications` **without the App Store** (`.dmg` / `.pkg`): **[INSTALL.md](INSTALL.md)**.
 
-Giving the app to other Macs needs a paid Apple Developer account and notarization. Otherwise Gatekeeper blocks it.
+```bash
+bash native/macos/scripts/package.sh
+```
+
+Or download the artifact from the [macOS installer workflow](https://github.com/amrbruno-art/prumo/actions/workflows/macos-installer.yml). Without notarization, use right-click → Open.
 
 ### Uninstall
 
