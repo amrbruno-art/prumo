@@ -6,7 +6,7 @@ Timer de barra de menu de **código aberto**. Puxe o prumo na barra — quanto m
 
 Open-source menu bar timer. Pull the plumb from the menu bar — the deeper you drop it, the longer the time.
 
-**Licença:** [MIT](LICENSE) · **Isenção:** [DISCLAIMER.md](DISCLAIMER.md) · **Marcas:** [NOTICE.md](NOTICE.md) · **Desinstalar:** [UNINSTALL.md](UNINSTALL.md)
+**Licença:** [MIT](LICENSE) · **Isenção:** [DISCLAIMER.md](DISCLAIMER.md) · **Marcas:** [NOTICE.md](NOTICE.md) · **Desinstalar:** [UNINSTALL.md](UNINSTALL.md) · **App nativo:** [NATIVE.md](NATIVE.md)
 
 > Ao usar este software você aceita o [MIT](LICENSE) e o [DISCLAIMER.md](DISCLAIMER.md).  
 > **Não há garantia. Use por sua conta e risco.**
@@ -19,7 +19,9 @@ Open-source menu bar timer. Pull the plumb from the menu bar — the deeper you 
 
 Prumo é um **aplicativo web** que simula um desktop estilo macOS para você criar timers com um gesto: arrastar o ícone da barra de menu para baixo. A distância define a duração. Depois você pode dar um nome. A contagem aparece na barra. Ao terminar, há som e um aviso na tela.
 
-Isto **não** é um app nativo assinado para Mac, **não** está na Mac App Store e **não** é um produto Apple.
+Há também um **projeto Xcode nativo** (barra de menu real do macOS) em [`native/macos/`](native/macos/). Como gerar o `.app`: [NATIVE.md](NATIVE.md).
+
+Isto **não** está na Mac App Store e **não** é um produto Apple. O `.app` nativo **não** vem pré-compilado: você constrói no Xcode no seu Mac.
 
 ### O que não é
 
@@ -70,15 +72,30 @@ npm run preview      # servir o build
 
 Não rode como serviço de alarme em produção crítica. É um utilitário de interface, no navegador.
 
+### App nativo (`.app` no Mac)
+
+Empacotar este site **não** coloca um ícone na barra de menu real. O caminho nativo é Swift/AppKit.
+
+Guia: **[NATIVE.md](NATIVE.md)**. Resumo:
+
+```bash
+git clone https://github.com/amrbruno-art/prumo.git
+open native/macos/Prumo.xcodeproj
+```
+
+No Xcode: escolha o seu Team (Apple ID) → Product → Run. O prumo aparece na **barra de menu** (não no Dock).
+
+Para instalar em `/Applications`: Product → Archive → Distribute App → Copy App.
+
+Distribuir para outros Macs exige conta Apple Developer paga e notarização. Sem isso, o Gatekeeper bloqueia.
+
 ### Desinstalar
 
 Guia completo: **[UNINSTALL.md](UNINSTALL.md)**. Resumo:
 
-1. No terminal, `Ctrl+C` / `Control+C` para parar `npm run dev`.
-2. Apague a pasta do clone (`rm -rf prumo` ou Lixo no Finder). Não há `.app` em `/Applications`.
-3. No navegador, remova os dados do site (timers ficam em `localStorage`, chave `prumo-v1`) e recuse as notificações se tiver permitido.
-4. Se instalou como PWA/atalho, tire o ícone da Dock ou da tela de início.
-5. Node.js é separado: só desinstale o Node se você o colocou **apenas** para o Prumo.
+1. Web: no terminal, `Ctrl+C` / `Control+C` para parar `npm run dev`; apague a pasta do clone; limpe os dados do site no navegador (`prumo-v1`).
+2. Nativo: encerrar na barra de menu, apagar `Prumo.app` de Aplicativos e a pasta `~/Library/Application Support/Prumo`.
+3. Node.js e Xcode são programas separados: só os desinstale se você os colocou **apenas** para o Prumo.
 
 ### Como usar
 
@@ -117,7 +134,9 @@ Contribuições: [CONTRIBUTING.md](CONTRIBUTING.md). Conduta: [CODE_OF_CONDUCT.m
 
 Prumo is a **web app** that simulates a macOS-style desktop so you can set timers with a gesture: drag the menu bar icon down. Distance is duration. You can name it. Remaining time shows in the bar. When it ends, you get a chime and an on-screen banner.
 
-This is **not** a signed native Mac app, **not** on the Mac App Store, and **not** an Apple product.
+There is also a **native Xcode project** (real macOS menu bar) in [`native/macos/`](native/macos/). How to build the `.app`: [NATIVE.md](NATIVE.md).
+
+This is **not** on the Mac App Store and **not** an Apple product. The native `.app` is **not** a prebuilt binary: you compile it in Xcode on your Mac.
 
 ### What it is not
 
@@ -166,15 +185,30 @@ npm run preview
 
 Do not run this as a safety-critical alarm.
 
+### Native app (Mac `.app`)
+
+Wrapping this site does **not** put an icon in the real menu bar. Native means Swift/AppKit.
+
+Guide: **[NATIVE.md](NATIVE.md)**. Short version:
+
+```bash
+git clone https://github.com/amrbruno-art/prumo.git
+open native/macos/Prumo.xcodeproj
+```
+
+In Xcode: pick your Team (Apple ID) → Product → Run. The plumb appears in the **menu bar** (not the Dock).
+
+To install in `/Applications`: Product → Archive → Distribute App → Copy App.
+
+Giving the app to other Macs needs a paid Apple Developer account and notarization. Otherwise Gatekeeper blocks it.
+
 ### Uninstall
 
 Full guide: **[UNINSTALL.md](UNINSTALL.md)**. Short version:
 
-1. In the terminal, `Ctrl+C` / `Control+C` to stop `npm run dev`.
-2. Delete the clone folder (`rm -rf prumo` or Trash in Finder). There is no `.app` in `/Applications`.
-3. In the browser, remove the site’s data (timers live in `localStorage` key `prumo-v1`) and revoke notifications if you allowed them.
-4. If you installed it as a PWA/shortcut, remove the Dock or Home Screen icon.
-5. Node.js is separate: uninstall Node only if you installed it **solely** for Prumo.
+1. Web: in the terminal, `Ctrl+C` / `Control+C` to stop `npm run dev`; delete the clone folder; clear the site’s data in the browser (`prumo-v1`).
+2. Native: quit from the menu bar, delete `Prumo.app` from Applications and `~/Library/Application Support/Prumo`.
+3. Node.js and Xcode are separate: uninstall them only if you installed them **solely** for Prumo.
 
 ### How to use
 

@@ -1,14 +1,60 @@
 # Desinstalar o Prumo / Uninstall Prumo
 
-Prumo **não** instala um `.app` nativo no macOS, nem serviço de sistema, LaunchAgent, extensão de kernel ou item em `/Applications`. É um projeto Node que você clona e roda no navegador. Apagar a pasta e os dados do site basta.
+Há duas formas: a **simulação web** (clone Node) e, se você compilou, o **`.app` nativo**.
 
-Prumo does **not** install a native macOS `.app`, system service, LaunchAgent, kernel extension, or `/Applications` item. It is a cloned Node project that runs in the browser. Deleting the folder and the site data is enough.
+There are two forms: the **web simulation** (Node clone) and, if you built it, the **native `.app`**.
 
 **Sem garantia.** Ver [DISCLAIMER.md](DISCLAIMER.md).
 
 ---
 
-## Português
+## App nativo (`.app`) — Português
+
+Só vale se você gerou o app no Xcode ([NATIVE.md](NATIVE.md)).
+
+1. **Encerrar.** Clique no prumo na barra de menu → **Encerrar Prumo**. Ou Activity Monitor → Prumo → Sair.
+2. **Tirar de Aplicativos.**
+   - Finder → Aplicativos → `Prumo.app` → Lixo, depois esvazie.
+   - Ou: `rm -rf /Applications/Prumo.app`
+3. **Dados do app.**
+   ```bash
+   rm -rf ~/Library/Application\ Support/Prumo
+   rm -f ~/Library/Preferences/art.amrbruno.prumo.plist
+   rm -rf ~/Library/Caches/art.amrbruno.prumo
+   ```
+4. **Início automático.** Ajustes do Sistema → Geral → Itens de início → remova Prumo se estiver lá.
+5. **Notificações.** Ajustes do Sistema → Notificações → Prumo → desligar ou remover.
+6. **Xcode / clone.** Se não quiser mais o código: apague a pasta do repositório. O Xcode em si não é o Prumo; não desinstale o Xcode só por isso.
+
+Isto **não** remove o Node, o Git nem outros programas.
+
+---
+
+## App nativo (`.app`) — English
+
+Only if you built the app in Xcode ([NATIVE.md](NATIVE.md)).
+
+1. **Quit.** Click the plumb in the menu bar → **Quit Prumo**. Or Activity Monitor → Prumo → Quit.
+2. **Remove from Applications.**
+   - Finder → Applications → `Prumo.app` → Trash, then empty.
+   - Or: `rm -rf /Applications/Prumo.app`
+3. **App data.**
+   ```bash
+   rm -rf ~/Library/Application\ Support/Prumo
+   rm -f ~/Library/Preferences/art.amrbruno.prumo.plist
+   rm -rf ~/Library/Caches/art.amrbruno.prumo
+   ```
+4. **Login item.** System Settings → General → Login Items → remove Prumo if listed.
+5. **Notifications.** System Settings → Notifications → Prumo → turn off or remove.
+6. **Xcode / clone.** Delete the repo folder if you no longer want the source. Do not uninstall Xcode just for this.
+
+This does **not** remove Node, Git, or other programs.
+
+---
+
+## Simulação web — Português
+
+A web **não** instala um `.app`, nem LaunchAgent, nem item em `/Applications`. Apagar a pasta e os dados do site basta.
 
 ### 1. Parar o programa
 
@@ -90,7 +136,9 @@ Não desinstale o Node se usa outros programas JavaScript.
 
 ---
 
-## English
+## Simulação web — English
+
+The web app does **not** install a native `.app`, LaunchAgent, or `/Applications` item. Deleting the folder and the site data is enough.
 
 ### 1. Stop the program
 

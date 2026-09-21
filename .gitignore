@@ -32,5 +32,17 @@ artifacts/
 .project_id
 AGENTS.md
 
+# Xcode (native macOS app)
+native/macos/DerivedData/
+native/macos/build/
+xcuserdata/
+*.xcuserstate
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
 # Generated at build/dev time
 src/routeTree.gen.ts
+
