@@ -82,7 +82,13 @@ final class StatusItemController: NSObject {
         pop.animates = true
         pop.contentSize = NSSize(width: 280, height: 420)
         pop.contentViewController = NSHostingController(
-            rootView: PopoverRoot(store: store, onQuit: { [weak self] in
+            rootView: PopoverRoot(store: store, onStartPull: { [weak self] in
+                if let event = NSApp.currentEvent {
+                    self?.drag?.begin(event: event)
+                } else {
+                    self?.drag?.begin()
+                }
+            }, onQuit: { [weak self] in
                 self?.popover?.performClose(nil)
                 NSApp.terminate(nil)
             })
