@@ -86,7 +86,7 @@ sealed class PanelForm : Form
         var quit = new Button { Text = Copy.Quit(_store.Settings.Language), Location = new Point(190, 296), Width = 96 };
         quit.Click += (_, _) => _onQuit();
 
-        Controls.AddRange(header, about, quick, presets, _list, _lang, _countdown, _seconds, _snap, _sound, _notify, quit);
+        Controls.AddRange(new Control[] { header, about, quick, presets, _list, _lang, _countdown, _seconds, _snap, _sound, _notify, quit });
         SyncChecks();
         RefreshList();
     }

@@ -68,7 +68,7 @@ sealed class NamePromptForm : Form
         AcceptButton = start;
         CancelButton = cancel;
 
-        Controls.AddRange(dur, end, hint, _box, cancel, skip, start);
+        Controls.AddRange(new Control[] { dur, end, hint, _box, cancel, skip, start });
         Shown += (_, _) => _box.Focus();
     }
 
