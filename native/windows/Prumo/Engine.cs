@@ -36,17 +36,17 @@ sealed class PersistedState
 
 static class Mapping
 {
-    public const float DragThresholdPx = 12;
-    public const float ActivatePx = 24;
+    public const double DragThresholdPx = 12;
+    public const double ActivatePx = 24;
 
-    static readonly (float t, double m)[] ShortStops =
+    static readonly (double t, double m)[] ShortStops =
     [
         (0, 0.5), (0.06, 1), (0.11, 2), (0.16, 3), (0.22, 5), (0.3, 8),
         (0.37, 10), (0.46, 15), (0.54, 20), (0.61, 25), (0.68, 30),
         (0.76, 45), (0.83, 60), (0.91, 120), (1, 480),
     ];
 
-    static readonly (float t, double m)[] LongStops =
+    static readonly (double t, double m)[] LongStops =
     [
         (0, 5), (0.1, 15), (0.2, 30), (0.32, 60), (0.44, 120),
         (0.56, 240), (0.68, 480), (0.82, 720), (1, 1440),
@@ -58,7 +58,7 @@ static class Mapping
         75, 90, 105, 120, 150, 180, 240, 300, 360, 480, 600, 720, 960, 1200, 1440,
     ];
 
-    public static double DragToMinutes(float distancePx, float viewportH, bool stretch)
+    public static double DragToMinutes(double distancePx, double viewportH, bool stretch)
     {
         var usable = Math.Max(260, viewportH - 96);
         var t = Math.Clamp((distancePx - DragThresholdPx) / usable, 0, 1);
@@ -85,7 +85,7 @@ static class Mapping
 
     public static int MinutesToMs(double minutes) => (int)Math.Round(minutes * 60_000);
 
-    static double LerpStops(float t, (float t, double m)[] stops)
+    static double LerpStops(double t, (double t, double m)[] stops)
     {
         if (t <= 0) return stops[0].m;
         if (t >= 1) return stops[^1].m;
@@ -307,7 +307,7 @@ static class Taskbar
         _ => origin.X - now.X,
     };
 
-    public static float ViewportSpan()
+    public static double ViewportSpan()
     {
         var s = Screen.FromPoint(Cursor.Position);
         return Edge() is TaskbarEdge.Left or TaskbarEdge.Right ? s.Bounds.Width : s.Bounds.Height;
