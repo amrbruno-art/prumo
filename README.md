@@ -8,7 +8,7 @@ Open-source menu bar timer. Pull the plumb from the menu bar — the deeper you 
 
 **Licença:** [MIT](LICENSE) · **Isenção:** [DISCLAIMER.md](DISCLAIMER.md) · **Marcas:** [NOTICE.md](NOTICE.md) · **Desinstalar:** [UNINSTALL.md](UNINSTALL.md) · **App nativo:** [NATIVE.md](NATIVE.md) · **Instalador:** [INSTALL.md](INSTALL.md)
 
-**Nativo atual:** [v1.0.8](https://github.com/amrbruno-art/prumo/releases/tag/v1.0.8) (`Prumo-1.0.8.dmg` / `.pkg` / `.zip`)
+**Nativo atual:** [v1.0.8](https://github.com/amrbruno-art/prumo/releases/tag/v1.0.8) (macOS `.dmg` / `.pkg`) · Windows: [WINDOWS.md](WINDOWS.md) (bandeja do sistema, `Prumo.exe`)
 
 > Ao usar este software você aceita o [MIT](LICENSE) e o [DISCLAIMER.md](DISCLAIMER.md).  
 > **Não há garantia. Use por sua conta e risco.**
@@ -21,7 +21,7 @@ Open-source menu bar timer. Pull the plumb from the menu bar — the deeper you 
 
 Prumo é um **aplicativo web** que simula um desktop estilo macOS para você criar timers com um gesto: arrastar o ícone da barra de menu para baixo. A distância define a duração. Depois você pode dar um nome. A contagem aparece na barra. Ao terminar, há som e um aviso na tela.
 
-Há também um **projeto Xcode nativo** (barra de menu real do macOS) em [`native/macos/`](native/macos/). Como gerar o `.app`: [NATIVE.md](NATIVE.md).
+Há também um **projeto Xcode nativo** (barra de menu real do macOS) em [`native/macos/`](native/macos/) e um **app Windows** (bandeja do sistema) em [`native/windows/`](native/windows/). Guias: [NATIVE.md](NATIVE.md), [WINDOWS.md](WINDOWS.md), instalador Mac: [INSTALL.md](INSTALL.md).
 
 Isto **não** está na Mac App Store e **não** é um produto Apple. O `.app` nativo **não** vem pré-compilado: você constrói no Xcode no seu Mac.
 
@@ -89,6 +89,8 @@ No Xcode: escolha o seu Team (Apple ID) → Product → Run. O prumo aparece na 
 
 Para instalar em `/Applications` **sem App Store** (`.dmg` / `.pkg`): **[INSTALL.md](INSTALL.md)**.
 
+**Windows:** bandeja do sistema, não barra de menu. Extraia `Prumo-windows-*.zip` e abra `Prumo.exe`. Guia: **[WINDOWS.md](WINDOWS.md)**.
+
 ```bash
 bash native/macos/scripts/package.sh
 ```
@@ -100,8 +102,9 @@ Ou baixe o artifact do [workflow macOS installer](https://github.com/amrbruno-ar
 Guia completo: **[UNINSTALL.md](UNINSTALL.md)**. Resumo:
 
 1. Web: no terminal, `Ctrl+C` / `Control+C` para parar `npm run dev`; apague a pasta do clone; limpe os dados do site no navegador (`prumo-v1`).
-2. Nativo: encerrar na barra de menu, apagar `Prumo.app` de Aplicativos e a pasta `~/Library/Application Support/Prumo`.
-3. Node.js e Xcode são programas separados: só os desinstale se você os colocou **apenas** para o Prumo.
+2. Nativo Mac: encerrar na barra de menu, apagar `Prumo.app` de Aplicativos e a pasta `~/Library/Application Support/Prumo`.
+3. Nativo Windows: Sair na bandeja, apagar a pasta do `Prumo.exe` e `%AppData%\Prumo`.
+4. Node.js e Xcode são programas separados: só os desinstale se você os colocou **apenas** para o Prumo.
 
 ### Como usar
 

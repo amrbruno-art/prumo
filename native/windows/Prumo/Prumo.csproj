@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>prumo.ico</ApplicationIcon>
+    <AssemblyName>Prumo</AssemblyName>
+    <RootNamespace>Prumo</RootNamespace>
+    <Product>Prumo</Product>
+    <Version>1.0.0</Version>
+    <Authors>Prumo contributors</Authors>
+    <Description>Open-source system-tray timer. Pull the plumb to set a duration. Not Gestimer.</Description>
+    <Copyright>Copyright 2026 Prumo contributors. MIT. AS IS. No warranty.</Copyright>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="prumo.ico" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

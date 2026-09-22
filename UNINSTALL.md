@@ -1,8 +1,8 @@
 # Desinstalar o Prumo / Uninstall Prumo
 
-Há duas formas: a **simulação web** (clone Node) e, se você compilou, o **`.app` nativo**.
+Há duas formas no Mac: a **simulação web** (clone Node) e, se você compilou, o **`.app` nativo**. No Windows: **bandeja** + `Prumo.exe`.
 
-There are two forms: the **web simulation** (Node clone) and, if you built it, the **native `.app`**.
+There are two forms on Mac: the **web simulation** (Node clone) and, if you built it, the **native `.app`**. On Windows: **tray** + `Prumo.exe`.
 
 **Sem garantia.** Ver [DISCLAIMER.md](DISCLAIMER.md).
 
@@ -31,6 +31,25 @@ Só vale se você gerou o app no Xcode ([NATIVE.md](NATIVE.md)).
 7. **Xcode / clone.** Se não quiser mais o código: apague a pasta do repositório. O Xcode em si não é o Prumo; não desinstale o Xcode só por isso.
 
 Isto **não** remove o Node, o Git nem outros programas.
+
+---
+
+## Windows (bandeja) — Português
+
+Guia: [WINDOWS.md](WINDOWS.md).
+
+1. Clique no Prumo na bandeja → **Sair**. Ou Gerenciador de Tarefas → `Prumo` → Finalizar tarefa.
+2. Apague a pasta onde está `Prumo.exe`.
+3. Apague `%AppData%\Prumo` (dados e `last-launch.txt`).
+4. Se criou um atalho na área de trabalho ou no menu Iniciar, apague o atalho.
+
+Não há serviço nem desinstalador da Store.
+
+---
+
+## Windows (tray) — English
+
+See [WINDOWS.md](WINDOWS.md). Quit from the tray, delete the `Prumo.exe` folder, delete `%AppData%\Prumo`.
 
 ---
 

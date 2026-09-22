@@ -2,6 +2,8 @@
 
 O Prumo **não** está na Mac App Store. Dá para instalar **à parte**, como qualquer app independente: um `.dmg` (arrastar para Aplicativos) ou um `.pkg` (instalador do macOS).
 
+No **Windows** o equivalente é a bandeja: [WINDOWS.md](WINDOWS.md) (`Prumo.exe` no zip, não na Microsoft Store).
+
 Prumo is **not** on the Mac App Store. You can **sideload** it like other indie Mac apps: a `.dmg` (drag to Applications) or a `.pkg` (macOS Installer).
 
 **Sem garantia.** [DISCLAIMER.md](DISCLAIMER.md). Isto não é aconselhamento da Apple.

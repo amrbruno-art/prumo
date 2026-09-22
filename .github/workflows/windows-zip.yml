@@ -1,0 +1,59 @@
+# Self-contained Prumo.exe for Windows (sideload, not Microsoft Store).
+name: Windows zip
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "native/windows/**"
+      - ".github/workflows/windows-zip.yml"
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    name: Build Prumo.exe zip
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish win-x64
+        run: |
+          dotnet publish native/windows/Prumo/Prumo.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o dist/windows
+
+      - name: Zip
+        shell: pwsh
+        run: |
+          $ver = (Select-Xml -Path native/windows/Prumo/Prumo.csproj -XPath "//Version").Node.InnerText
+          if (-not $ver) { $ver = "1.0.0" }
+          New-Item -ItemType Directory -Force dist | Out-Null
+          Copy-Item native/windows/README.md dist/windows/README.txt
+          Compress-Archive -Path dist/windows/* -DestinationPath "dist/Prumo-windows-$ver.zip" -Force
+          Get-FileHash "dist/Prumo-windows-$ver.zip" -Algorithm SHA256 | ForEach-Object { "$($_.Hash.ToLower())  Prumo-windows-$ver.zip" } | Set-Content dist/SHA256SUMS-windows.txt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Prumo-windows-zip
+          path: |
+            dist/Prumo-windows-*.zip
+            dist/SHA256SUMS-windows.txt
+
+      - name: Attach to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/Prumo-windows-*.zip
+            dist/SHA256SUMS-windows.txt

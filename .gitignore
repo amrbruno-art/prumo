@@ -38,6 +38,13 @@ native/macos/build/
 xcuserdata/
 *.xcuserstate
 *.moved-aside
+
+# .NET (native Windows app)
+native/windows/**/bin/
+native/windows/**/obj/
+native/windows/.vs/
+*.user
+
 *.hmap
 *.ipa
 *.dSYM.zip
